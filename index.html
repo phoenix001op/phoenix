@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phoenix — Rise Into Anime</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ember particle field -->
+  <div class="ember-field" id="emberField" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wordmark">
+      <span class="wordmark-glyph">鳳</span>
+      <div class="wordmark-text">
+        <span class="wordmark-main">PHOENIX</span>
+        <span class="wordmark-sub">rise into anime</span>
+      </div>
+    </div>
+
+    <nav class="main-nav">
+      <button class="nav-btn is-active" data-view="discover">Discover</button>
+      <button class="nav-btn" data-view="reviews">My Reviews</button>
+      <a class="nav-btn" href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <h1 class="hero-title">Every great watch<br>starts from an ember.</h1>
+        <p class="hero-sub">Discover what's airing, rising, and worth your next binge — then rate it, review it, and build a trail only you could have burned.</p>
+        <form class="hero-search" id="heroSearchForm">
+          <input type="text" id="heroSearchInput" placeholder="Search a title — Bleach, Frieren, Chainsaw Man…" autocomplete="off">
+          <button type="submit">Ignite</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- DISCOVER VIEW (browsing + search both render here) -->
+    <section class="view" id="view-discover">
+      <div class="section-head">
+        <h2><span class="ember-dash"></span><span id="discoverHeading">Currently Airing</span></h2>
+        <button class="refresh-btn" id="refreshDiscover" title="Load a fresh set">
+          <span class="refresh-icon">&#8635;</span> Refresh
+        </button>
+      </div>
+
+      <div class="search-status is-hidden" id="searchStatus">
+        <span id="searchStatusText"></span>
+        <button class="chip" id="clearSearch">&times; Clear search</button>
+      </div>
+
+      <div class="filter-row" id="seasonFilters">
+        <button class="chip is-active" data-filter="airing">Airing Now</button>
+        <button class="chip" data-filter="upcoming">Rising Soon</button>
+        <button class="chip" data-filter="bypopularity">All-Time Favorites</button>
+      </div>
+      <div class="filter-row filter-row-type" id="typeFilters">
+        <span class="filter-label">Type:</span>
+        <button class="chip is-active" data-type="all">All</button>
+        <button class="chip" data-type="TV">TV</button>
+        <button class="chip" data-type="movie">Movie</button>
+        <button class="chip" data-type="OVA">OVA</button>
+        <button class="chip" data-type="ONA">ONA</button>
+        <button class="chip" data-type="special">Special</button>
+      </div>
+      <div class="card-grid" id="discoverGrid">
+        <div class="loader">Stoking the embers…</div>
+      </div>
+    </section>
+
+    <!-- REVIEWS VIEW -->
+    <section class="view is-hidden" id="view-reviews">
+      <div class="section-head">
+        <h2><span class="ember-dash"></span>Your Trail</h2>
+        <p class="section-note">Everything you've rated and reviewed, kept right here in your browser.</p>
+      </div>
+      <div class="card-grid" id="reviewsGrid"></div>
+      <div class="empty-state is-hidden" id="reviewsEmpty">
+        <p>Your trail is still cold.</p>
+        <span>Rate an anime from Discover to light the first ember.</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Phoenix — built by an anime watcher, for anime watchers. Data via <a href="https://kitsu.io" target="_blank" rel="noopener">Kitsu API</a>.</p>
+  </footer>
+
+  <script src="api.js"></script>
+  <script src="store.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

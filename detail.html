@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phoenix — Anime Detail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="ember-field" id="emberField" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wordmark">
+      <span class="wordmark-glyph">鳳</span>
+      <div class="wordmark-text">
+        <span class="wordmark-main">PHOENIX</span>
+        <span class="wordmark-sub">rise into anime</span>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a class="nav-btn back-link" href="index.html">&larr; Back to Phoenix</a>
+      <a class="nav-btn" href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main class="detail-page">
+    <div id="detailContent" class="detail-content detail-content-page">
+      <div class="loader">Loading details…</div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Phoenix — built by an anime watcher, for anime watchers. Data via <a href="https://kitsu.io" target="_blank" rel="noopener">Kitsu API</a>.</p>
+  </footer>
+
+  <script src="api.js"></script>
+  <script src="store.js"></script>
+  <script src="detail.js"></script>
+</body>
+</html>
