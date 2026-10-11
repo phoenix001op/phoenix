@@ -169,6 +169,19 @@ const PhoenixAPI = {
   },
 
   /**
+   * Top 50 highest-rated: kind = 'movie' or 'series' (TV).
+   * Kitsu caps pages at 20, so fetch 3 pages and keep the first 50.
+   */
+  async getTop50(kind = 'movie') {
+    const subtype = kind === 'series' ? 'TV' : 'movie';
+    const pages = await Promise.all([0, 20, 40].map(offset =>
+      _kitsuFetch(`/anime?sort=ratingRank&filter[subtype]=${subtype}&page[limit]=20&page[offset]=${offset}&include=genres`)
+        .then(_normalizeList)
+    ));
+    return pages.flat().slice(0, 50);
+  },
+
+  /**
    * Full detail for a single anime by its Kitsu id, including studio/producer
    * info and streaming availability (where to watch it).
    */

@@ -25,6 +25,7 @@
 
     <nav class="main-nav">
       <button class="nav-btn is-active" data-view="discover">Discover</button>
+      <button class="nav-btn" data-view="top50">Top 50</button>
       <button class="nav-btn" data-view="reviews">My Reviews</button>
       <a class="nav-btn" href="about.html">About</a>
     </nav>
@@ -75,6 +76,18 @@
       <div class="card-grid" id="discoverGrid">
         <div class="loader">Stoking the embers…</div>
       </div>
+    </section>
+
+    <!-- TOP 50 VIEW -->
+    <section class="view is-hidden" id="view-top50">
+      <div class="section-head">
+        <h2><span class="ember-dash"></span>Top 50 Highest Rated</h2>
+      </div>
+      <div class="filter-row" id="top50Filters">
+        <button class="chip is-active" data-kind="movie">Movies</button>
+        <button class="chip" data-kind="series">Series</button>
+      </div>
+      <div class="card-grid" id="top50Grid"></div>
     </section>
 
     <!-- REVIEWS VIEW -->

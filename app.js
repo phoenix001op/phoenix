@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const navBtns = document.querySelectorAll('.main-nav button.nav-btn');
   const views = {
     discover: document.getElementById('view-discover'),
+    top50: document.getElementById('view-top50'),
     reviews: document.getElementById('view-reviews')
   };
 
@@ -34,7 +35,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     navBtns.forEach(btn => btn.classList.toggle('is-active', btn.dataset.view === name));
     if (name === 'reviews') renderReviews();
+    if (name === 'top50') loadTop50(top50Kind);
   }
+
+  /* ---- top 50 view (movies / series by rating) ---- */
+  const top50Grid = document.getElementById('top50Grid');
+  const top50Chips = document.querySelectorAll('#top50Filters .chip');
+  const top50Cache = {};
+  let top50Kind = 'movie';
+
+  async function loadTop50(kind) {
+    top50Kind = kind;
+    if (top50Cache[kind]) {
+      renderGrid(top50Grid, top50Cache[kind], 'Nothing found.');
+      return;
+    }
+    top50Grid.innerHTML = '<div class="loader">Fanning the flames…</div>';
+    try {
+      top50Cache[kind] = await PhoenixAPI.getTop50(kind);
+      if (top50Kind === kind) renderGrid(top50Grid, top50Cache[kind], 'Nothing found.');
+    } catch (e) {
+      console.error(e);
+      top50Grid.innerHTML = '<div class="loader">Couldn\'t load the Top 50 — try again in a moment.</div>';
+    }
+  }
+
+  top50Chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      top50Chips.forEach(c => c.classList.remove('is-active'));
+      chip.classList.add('is-active');
+      loadTop50(chip.dataset.kind);
+    });
+  });
 
   navBtns.forEach(btn => {
     btn.addEventListener('click', () => showView(btn.dataset.view));
