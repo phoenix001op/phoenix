@@ -73,6 +73,15 @@ document.addEventListener('DOMContentLoaded', () => {
       ['Studio', anime.studios && anime.studios.length ? anime.studios.join(', ') : 'Unlisted']
     ];
 
+    // always offer Crunchyroll (opens a search for this title) unless Kitsu already listed it
+    const watchLinks = [...(anime.streamingLinks || [])];
+    if (!watchLinks.some(s => /crunchyroll/i.test(s.url + s.siteName))) {
+      watchLinks.push({
+        url: `https://www.crunchyroll.com/search?q=${encodeURIComponent(title)}`,
+        siteName: 'Crunchyroll'
+      });
+    }
+
     detailContent.innerHTML = `
       <div class="detail-hero detail-hero-page"><img src="${img}" alt="${title}"></div>
       <div class="detail-body detail-body-page">
@@ -104,9 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div class="watch-block">
           <h3>Where to Watch</h3>
-          ${anime.streamingLinks && anime.streamingLinks.length
+          ${watchLinks.length
             ? `<div class="watch-links">
-                ${anime.streamingLinks.map(s => `
+                ${watchLinks.map(s => `
                   <a class="watch-pill" href="${s.url}" target="_blank" rel="noopener">${s.siteName}</a>
                 `).join('')}
                </div>`
