@@ -745,3 +745,65 @@ main { position: relative; z-index: 1; max-width: 1240px; margin: 0 auto; paddin
   .detail-title { font-size: 21px; }
   .card-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
 }
+
+/* ==========================================================================
+   Responsive — all screen sizes (phone / tablet / laptop / desktop / TV)
+   ========================================================================== */
+html { -webkit-text-size-adjust: 100%; }
+body { overflow-x: hidden; }
+img { max-width: 100%; }
+
+/* Large desktops & big monitors: use the extra room */
+@media (min-width: 1400px) {
+  main { max-width: 1480px; }
+  .card-grid { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 24px; }
+}
+@media (min-width: 1900px) {
+  main { max-width: 1760px; }
+  .card-grid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+  .hero-inner { max-width: 820px; }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .site-header { padding: 18px 4vw; }
+  .detail-hero.detail-hero-page { height: 260px; }
+  .detail-top-row { margin-top: -48px; }
+}
+
+/* Phones */
+@media (max-width: 640px) {
+  .main-nav { flex-wrap: wrap; gap: 4px; }
+  .nav-btn { padding: 8px 12px; font-size: 13px; }
+  .hero-title { font-size: clamp(26px, 8vw, 36px); }
+  .hero-sub { font-size: 14px; }
+  .hero-search input { min-width: 0; padding: 11px 14px; }
+  .hero-search button { padding: 0 18px; }
+  .section-head { flex-wrap: wrap; gap: 10px; }
+  .detail-hero.detail-hero-page { height: 200px; margin-top: 16px; }
+  .detail-top-row { margin-top: -36px; gap: 14px; }
+  .detail-body, .detail-body-page { padding-left: 4px; padding-right: 4px; }
+  .meta-grid { grid-template-columns: repeat(2, 1fr); }
+  .rate-actions { flex-wrap: wrap; }
+  .flame-seg { height: 40px; }
+  .watch-pill { padding: 9px 14px; }
+  .chip { padding: 8px 14px; }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .wordmark-sub { display: none; }
+  .nav-btn { padding: 7px 10px; font-size: 12.5px; }
+  .card-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .card-body { padding: 10px; }
+}
+
+/* Short landscape phones: don't let the sticky header eat the screen */
+@media (max-height: 480px) and (orientation: landscape) {
+  .site-header { position: static; }
+}
+
+/* Touch devices: no hover-only affordances, larger tap targets */
+@media (hover: none) {
+  .flame-seg, .chip, .nav-btn { min-height: 40px; }
+}
