@@ -807,3 +807,27 @@ img { max-width: 100%; }
 @media (hover: none) {
   .flame-seg, .chip, .nav-btn { min-height: 40px; }
 }
+
+
+/* Hero: search-only, glass search bar */
+.hero { padding: 40px 5vw 28px; }
+.hero-search {
+  max-width: 600px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.18);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: 0 8px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.15);
+}
+.hero-search:focus-within {
+  border-color: rgba(255,180,84,.7);
+  box-shadow: 0 8px 32px rgba(0,0,0,.35), 0 0 0 4px rgba(255,107,53,.15), inset 0 1px 0 rgba(255,255,255,.2);
+}
+.hero-search button {
+  width: 46px; height: 46px; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.12);
+  color: var(--text);
+}
+.hero-search button:hover { background: rgba(255,107,53,.35); filter: none; }
+@media (max-width: 640px) { .hero { padding: 24px 5vw 20px; } }
